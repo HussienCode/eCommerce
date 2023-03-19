@@ -20,11 +20,14 @@
     <!-- row opened -->
     <div class="row row-sm">
         <div class="col-xl-12">
+            @if (Session::has('success'))
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
+            @endif
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <h2 class=" text-2 mg-b-0">كافة المنتجات</h2>
-                        <a href="{{ route('products.create') }}" class="btn btn-primary">اضافة منتج</a>
+                        <h2 class=" text-2 mg-b-0">كافة الاقسام</h2>
+                        <a href="{{ route('categories.create') }}" class="btn btn-primary">اضافة قسم</a>
                         {{-- <i class="mdi mdi-dots-horizontal text-gray"></i> --}}
                     </div>
                 </div>
@@ -33,32 +36,18 @@
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                                 <tr>
-                                    <th class="wd-15p border-bottom-0">صورة الرئيسية</th>
                                     <th class="wd-15p border-bottom-0">الاسم</th>
-                                    <th class="wd-15p border-bottom-0">السعر</th>
-                                    <th class="wd-20p border-bottom-0">الخصم</th>
-                                    <th class="wd-20p border-bottom-0">القسم</th>
-                                    <th class="wd-15p border-bottom-0">حالة المنتج</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($categories as $category)
                                     <tr>
+                                        <td>{{ $category->name_ar }} - {{ $category->name_en }}</td>
                                         <td>
-                                            <img src="uploads/products/{{ $product->mainPhoto }}" alt="">
-                                        </td>
-                                        <td>{{ $product->name_ar }} - {{ $product->name_en }}</td>
-                                        <td>EGP{{ $product->localPrice }} - ${{ $product->forignPrice }}</td>
-                                        <td>{{ $product->discount }}</td>
-                                        <td>{{ $product->categoryName }}</td>
-                                        <td>
-                                            <button class="btn btn-@if (1) success @else danger  @endif">{{ $product->availableName }}</button>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-success">مشاهدة</a>
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info">تعديل</a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="post" class="d-inline">
+                                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info">تعديل</a>
+                                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="d-inline">
                                                 @csrf
+                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">حذف</button>
                                             </form>
                                         </td>

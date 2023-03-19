@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdminProductsController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AdminProductsController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->get(['mainPhoto', 'name_ar', 'name_en', 'localPrice', 'forignPrice', 'discount']);
-        return view('admin.products.index', compact('products'));
+        $categories = DB::table('lk_category')->get();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -26,8 +26,7 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        $colors = DB::table('colors')->get();
-        return view('admin.products.create', compact('colors'));
+        return view('admin.categories.create');
     }
 
     /**
@@ -38,12 +37,17 @@ class AdminProductsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        DB::table('products')->insert([
-            'name' => $request->name,
-            'price' => $request->price,
-            'discount' => $request->discount
+        $this->validate($request, [
+            'name_ar' => 'required',
+            'name_en' => 'required'
         ]);
+
+        DB::table('lk_category')->insert([
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en
+        ]);
+
+        return redirect()->back()->with('success', 'تم الحفظ بنجاح');
     }
 
     /**
@@ -65,7 +69,8 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = DB::table('lk_category')->find($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -77,7 +82,15 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name_ar' => 'required',
+            'name_en' => 'required'
+        ]);
+        DB::table('lk_category')->where('id', $id)->update([
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en
+        ]);
+        return redirect()->back()->with('success', 'تم التعديل بنجاح');
     }
 
     /**
@@ -88,6 +101,7 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('lk_category')->delete($id);
+        return redirect()->back()->with('success', 'تم الحذف بنجاح');
     }
 }

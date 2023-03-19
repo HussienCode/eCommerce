@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdminProductsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,12 @@ class AdminProductsController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->get(['mainPhoto', 'name_ar', 'name_en', 'localPrice', 'forignPrice', 'discount']);
-        return view('admin.products.index', compact('products'));
+        // Category && Products && sliders && (top Rated OR Best Sellers) && Discounts
+        $categories = DB::table('lk_category')->get();
+        $products = DB::table('products')->join('lk_rate', 'products.rate_id', '=', 'lk_rate.id')->limit(4)->get(['name_ar', 'name_en', 'mainPhoto', 'localPrice', 'forignPrice', 'discount', 'rateNumber']);
+        // $bestSellers = DB::table('products')->where('lk_rate', '>', '4')->get();
+        $sliders = DB::table('sliders')->get();
+        return view('web.index', compact('categories', 'products', 'sliders'));
     }
 
     /**
@@ -26,8 +30,7 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        $colors = DB::table('colors')->get();
-        return view('admin.products.create', compact('colors'));
+        //
     }
 
     /**
@@ -38,12 +41,7 @@ class AdminProductsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        DB::table('products')->insert([
-            'name' => $request->name,
-            'price' => $request->price,
-            'discount' => $request->discount
-        ]);
+        //
     }
 
     /**

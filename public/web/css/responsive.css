@@ -1,0 +1,158 @@
+/* small decive */
+@media (min-width: 320px) and (max-width: 480px) {
+  .navbar-nav {
+    text-align: center;
+  }
+  .carousel .carousel-inner {
+    height: 30vh;
+  }
+  .product_details .carousel .carousel-inner {
+    height: 70vh;
+  }
+  .product_details h5 {
+    margin-top: 1rem;
+  }
+  .carousel-caption h1 {
+    font-size: 2.5rem;
+  }
+  .carousel-caption {
+    bottom: 30%;
+  }
+  .carousel-caption h1{
+    font-size: 2rem;
+  }
+  .sale,
+  .categories,
+  .products,
+  .aboutUs,
+  .contactForm,
+  .product_details {
+    margin: 0;
+  }
+  .subscribe {
+    padding: 100px 0px;
+    margin-top: 4rem;
+    border-radius: 10px;
+  }
+  .subscribe h1 {
+    line-height: 50px;
+    font-size: 38px;
+    margin: 24px 0;
+  }
+  .subscribe .input-group input {
+    padding-left: 5px;
+    width: 30%;
+  }
+  .subscribe .input-group .input-group-text {
+    width: 100%;
+    padding: 0 5px;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+  .footer_part {
+    padding: 100px 0px 25px;
+  }
+  .aboutUs p {
+    padding-top: 0;
+  }
+  .aboutUs img,
+  .contactForm img {
+    margin: 1.5rem 0;
+  }
+  .carttable table img {
+    max-width: 80%;
+  }
+  .carttable table thead tr th,
+  .checkout_area table thead tr th {
+    font-size: 14px;
+  }
+  .carttable table td,
+  .checkout_area table td {
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .carttable table td input {
+    width: 50%;
+    font-size: 12px;
+  }
+  .carttable table td span {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  .carttable table td .bi-trash3 {
+    font-size: 1rem;
+  }
+  .carttable .btn-secondary {
+    padding: 1rem 0;
+    font-size: 18px;
+  }
+  .carttable .btn-success {
+    padding: 12px 10px;
+    font-size: 16px;
+  }
+  .checkout_area {
+    padding: 1px;
+  }
+  .checkout_area .btn-primary {
+    font-size: 18px;
+  }
+  .contactForm .gmap_canvas iframe {
+    height: 20rem;
+  }
+  .checkout_area h3 {
+    margin: 24px 0;
+  }
+  .checkout_area button {
+    margin-bottom: 2rem;
+  }
+  .filter .form-select {
+    margin-bottom: 1rem;
+  }
+  .page-link {
+    padding: 8px;
+  }
+  .cupon_area input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .tp_btn {
+    width: 60%;
+  }
+  .shipping_details h3 {
+    margin: 0 0 1rem 0;
+  }
+  .shipping_area .btn-primary {
+    width: 100%;
+  }
+  .signin,
+  .signup {
+    width: 90%;
+    margin: 4rem auto;
+    padding: 2rem;
+  }
+  .signin form,
+  .signup form {
+    width: 100%;
+  }
+  .signin span {
+    font-size: 16px;
+  }
+  .signin a {
+    margin: 0;
+    text-decoration: none;
+    padding: 1rem 13px;
+    font-size: 16px;
+  }
+  .signin span,
+  .signup span {
+    font-size: 16px;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  /* css */
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* css */
+}
